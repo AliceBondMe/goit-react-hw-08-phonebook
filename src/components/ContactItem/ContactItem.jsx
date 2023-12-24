@@ -13,7 +13,7 @@ export const ContactItem = ({ contact }) => {
   return (
     <Item>
       <Letter>{contact.name[0]}</Letter>
-      {contact.name}: {contact.phone}
+      {contact.name}: {contact.number}
       <DelButton type="button" id={contact.id} onClick={removeContact}>
         <BinIcon />
       </DelButton>
