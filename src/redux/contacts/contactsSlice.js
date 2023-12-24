@@ -18,22 +18,22 @@ const contactsSlice = createSlice({
         state.error = null;
         state.items = action.payload;
       })
+      .addCase(fetchContacts.pending, handlePending)
+      .addCase(fetchContacts.rejected, handleRejected)
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items.unshift(action.payload);
       })
+      .addCase(addContact.pending, handlePending)
+      .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items = state.items.filter(({ id }) => id !== action.payload.id);
       })
-      .addMatcher(action => {
-        return action.type.endsWith('pending');
-      }, handlePending)
-      .addMatcher(action => {
-        return action.type.endsWith('rejected');
-      }, handleRejected);
+      .addCase(deleteContact.pending, handlePending)
+      .addCase(deleteContact.rejected, handleRejected);
   },
 });
 

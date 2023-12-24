@@ -1,26 +1,28 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import 'yup-phone-lite';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContacts } from '../../redux/contacts/selectors';
+import { addContact } from '../../redux/contacts/operations';
 import {
+  Border,
   Button,
   ErrorMessageStyled,
-  FieldsWrapper,
   FormStyled,
   Input,
+  InputBox,
   Label,
-} from './ContactForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from '../../redux/selectors';
-import { addContact } from '../../redux/operations';
+} from 'components/Form.styled';
 
 const initialValues = {
   name: '',
-  phone: '',
+  number: '',
 };
 
 const validationSchema = yup.object().shape({
   name: yup.string().min(3).max(30).required('A name is required'),
-  phone: yup
+  number: yup
     .string()
     .phone(
       'UK',
@@ -29,7 +31,7 @@ const validationSchema = yup.object().shape({
     .required('A phone number is required'),
 });
 
-export const ContactForm = () => {
+export const ContactForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
@@ -47,9 +49,9 @@ export const ContactForm = () => {
     dispatch(addContact(newContact));
   };
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = values => {
     addNewContact(values);
-    resetForm();
+    closeModal();
   };
 
   return (
@@ -59,22 +61,24 @@ export const ContactForm = () => {
       validationSchema={validationSchema}
     >
       <FormStyled>
-        <FieldsWrapper>
-          <Label htmlFor="name">
-            Name
-            <Input type="text" name="name" />
-          </Label>
-          <Label htmlFor="number">
-            Number
-            <Input type="tel" name="phone" />
-          </Label>
-          <Button type="submit" aria-label="add contact">
-            Add contact
-          </Button>
-        </FieldsWrapper>
+        <InputBox>
+          <Input type="text" name="name" required />
+          <Label htmlFor="name">Name</Label>
+          <Border></Border>
+        </InputBox>
+
+        <InputBox>
+          <Input type="tel" name="number" required />
+          <Label htmlFor="number">Phone number</Label>
+          <Border></Border>
+        </InputBox>
+
+        <Button type="submit" aria-label="add contact">
+          Add contact
+        </Button>
 
         <ErrorMessageStyled name="name" component="div" />
-        <ErrorMessageStyled name="phone" component="div" />
+        <ErrorMessageStyled name="number" component="div" />
       </FormStyled>
     </Formik>
   );

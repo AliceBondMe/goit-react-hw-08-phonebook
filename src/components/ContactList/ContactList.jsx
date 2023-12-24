@@ -4,9 +4,9 @@ import {
   selectContacts,
   selectError,
   selectFilteredContacts,
-} from '../../redux/selectors';
+} from '../../redux/contacts/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/operations';
+import { fetchContacts } from '../../redux/contacts/operations';
 import { Error } from 'components/Error/Error';
 import { CounterMessage, List } from './ContactList.styled';
 
