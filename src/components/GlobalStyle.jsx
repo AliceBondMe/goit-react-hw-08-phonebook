@@ -1,4 +1,5 @@
-const { createGlobalStyle } = require('styled-components');
+import { createGlobalStyle } from 'styled-components';
+import brickWallImage from '../images/brick-wall-background.jpg';
 
 export const GlobalStyle = createGlobalStyle`
     :root {
@@ -19,7 +20,8 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 18px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background-color: #000000;
+        background: linear-gradient(to bottom, #020202be 40%, #0000008a 100%),
+    center / cover no-repeat url(${brickWallImage});
         color: var(--basic-white);
         position: relative;
     }
