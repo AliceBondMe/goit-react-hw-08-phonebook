@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { IoCloseCircleOutline } from 'react-icons/io5';
-import { Backdrop, CloseButton, ModalContainer } from './Modal.styled';
+import {
+  Backdrop,
+  CloseButton,
+  CloseIcon,
+  ModalContainer,
+} from './Modal.styled';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ closeModal }) => {
+export const Modal = ({ closeModal, isEditingContact }) => {
   const handleBackdropClose = e => {
     if (e.target === e.currentTarget) {
       closeModal();
@@ -34,9 +38,12 @@ export const Modal = ({ closeModal }) => {
           aria-label="Close window"
           onClick={closeModal}
         >
-          <IoCloseCircleOutline size="28" />
+          <CloseIcon />
         </CloseButton>
-        <ContactForm closeModal={closeModal} />
+        <ContactForm
+          closeModal={closeModal}
+          isEditingContact={isEditingContact}
+        />
       </ModalContainer>
     </Backdrop>,
     modalRoot

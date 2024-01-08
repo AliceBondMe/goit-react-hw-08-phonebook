@@ -3,9 +3,9 @@ import brickWallImage from '../images/brick-wall-background.jpg';
 
 export const GlobalStyle = createGlobalStyle`
     :root {
-        --basic-color: #21b9ff;
-        --darker-color: #1e9ad3;
-        --lighter-color: #93d9fa;
+        --basic-color: #21ebff;
+        --darker-color: #1fd8e9;
+        --lighter-color: #95f1fa;
         --basic-white: #ffffff;
         --accent-color: #ff9aff;
         --accent-color-2: #3dffc2;
@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background: linear-gradient(to bottom, #020202be 40%, #0000008a 100%),
-    center / cover no-repeat url(${brickWallImage});
+    center / cover fixed no-repeat url(${brickWallImage});
         color: var(--basic-white);
         position: relative;
     }
@@ -92,6 +92,8 @@ export const GlobalStyle = createGlobalStyle`
       opacity: 0;
     }
 }
+
+
 
 
     

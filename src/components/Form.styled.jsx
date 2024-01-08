@@ -7,6 +7,11 @@ export const FormTitle = styled.h2`
   font-size: 48px;
   margin-bottom: 24px;
   animation: pulsate 1.5s infinite alternate;
+
+  @media screen and (max-width: 639px) {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -21,17 +26,31 @@ export const Wrapper = styled.div`
   box-shadow: 0 0 0.2rem var(--basic-white), 0 0 0.2rem var(--basic-white),
     0 0 2rem var(--basic-color), 0 0 0.8rem var(--basic-color),
     0 0 2.8rem var(--basic-color), inset 0 0 1.3rem var(--basic-color);
+  background-color: #0000007e;
+
+  @media screen and (max-width: 639px) {
+    width: 280px;
+    padding: 32px 8px 24px 8px;
+  }
 `;
 
 export const InputBox = styled.div`
   position: relative;
   width: 400px;
+
+  @media screen and (max-width: 639px) {
+    width: 220px;
+  }
 `;
 
 export const FormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 639px) {
+    font-size: 14px;
+  }
 `;
 
 export const Label = styled.label`
@@ -43,6 +62,11 @@ export const Label = styled.label`
   color: var(--basic-color);
   pointer-events: none;
   transition: 0.5s;
+
+  @media screen and (max-width: 639px) {
+    padding: 12px 0;
+    font-size: 14px;
+  }
 `;
 
 export const Border = styled.span`
@@ -80,6 +104,10 @@ export const Input = styled(Field)`
     width: 100%;
     transition: 0.4s;
     left: 0;
+  }
+
+  @media screen and (max-width: 639px) {
+    font-size: 14px;
   }
 `;
 
@@ -126,6 +154,10 @@ export const Button = styled.button`
     top: 2px;
     text-shadow: 0 0 10px var(--basic-white);
   }
+
+  @media screen and (max-width: 639px) {
+    font-size: 16px;
+  }
 `;
 
 export const ErrorMessageStyled = styled(ErrorMessage)`
@@ -136,5 +168,9 @@ export const ErrorMessageStyled = styled(ErrorMessage)`
   margin-bottom: 8px;
   &::first-letter {
     text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 639px) {
+    width: 200px;
   }
 `;

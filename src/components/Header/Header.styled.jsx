@@ -11,6 +11,12 @@ export const HeaderStyled = styled.header`
   align-items: center;
   min-height: 36px;
   padding: 12px 24px;
-  box-shadow: 0px 2px 4px -1px #21b9ff9f, 0px 4px 5px 0px #21b9ff6b,
-    0px 1px 10px 0px #21b9ff5a;
+  box-shadow: 0px 2px 4px -1px #21ecff9a, 0px 4px 5px 0px #21ecff5a,
+    0px 1px 10px 0px #21ecff3c;
+  background-color: #000000;
+
+  @media screen and (max-width: 639px) {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
 `;

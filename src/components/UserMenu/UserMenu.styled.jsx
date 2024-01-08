@@ -10,6 +10,10 @@ export const Greeting = styled.p`
   font-size: 24px;
   color: var(--basic-color);
   text-shadow: 0 0 10px #ffffff;
+
+  @media screen and (max-width: 639px) {
+    font-size: 18px;
+  }
 `;
 
 export const Name = styled.span`
@@ -55,5 +59,9 @@ export const Button = styled.button`
   &:active {
     top: 2px;
     text-shadow: 0 0 10px var(--basic-white);
+  }
+
+  @media screen and (max-width: 639px) {
+    font-size: 18px;
   }
 `;

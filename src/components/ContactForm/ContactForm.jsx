@@ -1,10 +1,12 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import 'yup-phone-lite';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from '../../redux/contacts/selectors';
-import { addContact } from '../../redux/contacts/operations';
+import {
+  selectContactToEdit,
+  selectContacts,
+} from '../../redux/contacts/selectors';
+import { addContact, editContact } from '../../redux/contacts/operations';
 import {
   Border,
   Button,
@@ -15,25 +17,15 @@ import {
   Label,
 } from 'components/Form.styled';
 
-const initialValues = {
-  name: '',
-  number: '',
-};
-
 const validationSchema = yup.object().shape({
   name: yup.string().min(3).max(30).required('A name is required'),
-  number: yup
-    .string()
-    .phone(
-      'UK',
-      'Phone number is invalid. Please follow example: +38-093-333-33-33'
-    )
-    .required('A phone number is required'),
+  number: yup.string().min(6).max(30).required('A phone number is required'),
 });
 
-export const ContactForm = ({ closeModal }) => {
+export const ContactForm = ({ closeModal, isEditingContact }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const contactToEdit = useSelector(selectContactToEdit);
 
   const addNewContact = newContact => {
     const isExist = contacts.find(
@@ -49,8 +41,20 @@ export const ContactForm = ({ closeModal }) => {
     dispatch(addContact(newContact));
   };
 
+  const handleEditContact = data => {
+    dispatch(editContact(data));
+  };
+
+  const initialValues = {
+    name: isEditingContact ? contactToEdit.name : '',
+    number: isEditingContact ? contactToEdit.number : '',
+  };
+
   const handleSubmit = values => {
-    addNewContact(values);
+    isEditingContact
+      ? handleEditContact({ editedContact: values, id: contactToEdit.id })
+      : addNewContact(values);
+
     closeModal();
   };
 
@@ -73,8 +77,8 @@ export const ContactForm = ({ closeModal }) => {
           <Border></Border>
         </InputBox>
 
-        <Button type="submit" aria-label="add contact">
-          Add contact
+        <Button type="submit">
+          {isEditingContact ? 'Edit contact' : 'Add contact'}
         </Button>
 
         <ErrorMessageStyled name="name" component="div" />

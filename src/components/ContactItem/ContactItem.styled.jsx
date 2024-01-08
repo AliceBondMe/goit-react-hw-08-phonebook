@@ -1,4 +1,5 @@
 import { IoTrashBinSharp } from 'react-icons/io5';
+import { TbEdit } from 'react-icons/tb';
 import styled from 'styled-components';
 
 export const Letter = styled.span`
@@ -20,9 +21,24 @@ export const Letter = styled.span`
 export const BinIcon = styled(IoTrashBinSharp)`
   width: 20px;
   height: 20px;
+
+  @media screen and (max-width: 639px) {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
-export const DelButton = styled.button`
+export const EditIcon = styled(TbEdit)`
+  width: 20px;
+  height: 20px;
+
+  @media screen and (max-width: 639px) {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
+export const Button = styled.button`
   font-family: inherit;
   color: var(--basic-white);
   width: 28px;
@@ -73,18 +89,28 @@ export const DelButton = styled.button`
     width: 100%;
     box-shadow: 0 0 5px var(--basic-color), 0 0 5px var(--basic-color) inset;
   }
+
+  @media screen and (max-width: 639px) {
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+  }
 `;
 
 export const Item = styled.li`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   color: var(--basic-color);
   text-shadow: 0 0 10px var(--basic-white);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   transition: all 100ms ease-in-out;
 
   &:hover {
-    transform: scale(1.01);
+    padding: 12px;
+    border: 1px solid var(--basic-color);
+    border-radius: 12px;
+    box-shadow: 0 0 0.2rem var(--basic-white), 0 0 1rem var(--basic-color);
   }
 
   &:hover ${Letter} {
@@ -92,7 +118,28 @@ export const Item = styled.li`
     background-color: #000000;
   }
 
-  &:hover ${DelButton} {
+  &:hover ${Button} {
     color: var(--lighter-color);
   }
+
+  @media screen and (max-width: 639px) {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+`;
+
+export const ContactInfo = styled.div`
+  display: flex;
+  gap: 8px;
+
+  @media screen and (max-width: 639px) {
+    flex-direction: column;
+    align-items: start;
+    word-break: break-all;
+  }
+`;
+
+export const InfoWrap = styled.div`
+  display: flex;
+  gap: 12px;
 `;

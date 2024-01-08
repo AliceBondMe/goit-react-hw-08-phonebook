@@ -1,36 +1,43 @@
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
-import { AddButton, Title, TitleGroup, Wrapper } from './ContactsPage.styled';
+import {
+  AddBtnText,
+  AddButton,
+  PersonIcon,
+  Wrapper,
+} from './ContactsPage.styled';
 import { Modal } from 'components/Modal/Modal';
 import { useState } from 'react';
-import { IoPersonAddSharp } from 'react-icons/io5';
 
 const ContactsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditingContact, setIsEditingContact] = useState(false);
 
-  const handleOpenModal = () => {
+  const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsEditingContact(false);
+  };
+
+  const handleEditing = () => {
+    setIsEditingContact(true);
   };
 
   return (
     <Wrapper>
       <Filter />
-      <TitleGroup>
-        <Title>Contacts</Title>
-        <AddButton
-          type="button"
-          aria-label="Add Contact"
-          onClick={handleOpenModal}
-        >
-          <IoPersonAddSharp size="44" />
-        </AddButton>
-      </TitleGroup>
-      <ContactList />
-      {isModalOpen && <Modal closeModal={closeModal} />}
+
+      <AddButton type="button" aria-label="Add Contact" onClick={openModal}>
+        <PersonIcon /> <AddBtnText> Add new contact</AddBtnText>
+      </AddButton>
+
+      <ContactList openModal={openModal} handleEditing={handleEditing} />
+      {isModalOpen && (
+        <Modal closeModal={closeModal} isEditingContact={isEditingContact} />
+      )}
     </Wrapper>
   );
 };
