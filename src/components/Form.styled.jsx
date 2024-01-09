@@ -174,3 +174,15 @@ export const ErrorMessageStyled = styled(ErrorMessage)`
     width: 200px;
   }
 `;
+
+export const AuthError = styled.p`
+  width: 80%;
+  color: var(--accent-color);
+  text-shadow: 0 0 10px var(--basic-white);
+  text-align: center;
+  margin-bottom: 8px;
+
+  @media screen and (max-width: 639px) {
+    width: 200px;
+  }
+`;

@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 18px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background: linear-gradient(to bottom, #020202be 40%, #0000008a 100%),
+        background: linear-gradient(to bottom, #020202be 40%, #0000008a 100%) center / cover fixed no-repeat,
     center / cover fixed no-repeat url(${brickWallImage});
         color: var(--basic-white);
         position: relative;

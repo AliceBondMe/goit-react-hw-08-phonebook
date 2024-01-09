@@ -57,17 +57,7 @@ export const Wrap = styled.div`
     text-shadow: 0 0 5px var(--basic-color), 0 0 10px var(--basic-color),
       0 0 20px var(--basic-color), 0 0 40px var(--basic-color),
       0 0 80px var(--basic-color);
-    animation: moveLeft 600ms infinite alternate;
-
-    @keyframes moveLeft {
-      0% {
-        transform: translate(-10px, -50%);
-      }
-
-      100% {
-        transform: translate(10px, -50%);
-      }
-    }
+    animation: flicker 600ms infinite alternate;
   }
 
   &::after {
@@ -80,17 +70,7 @@ export const Wrap = styled.div`
     text-shadow: 0 0 5px var(--basic-color), 0 0 10px var(--basic-color),
       0 0 20px var(--basic-color), 0 0 40px var(--basic-color),
       0 0 80px var(--basic-color);
-    animation: moveRight 600ms infinite alternate;
-
-    @keyframes moveRight {
-      0% {
-        transform: translate(10px, -50%);
-      }
-
-      100% {
-        transform: translate(-10px, -50%);
-      }
-    }
+    animation: flicker 600ms infinite alternate;
   }
 
   @media screen and (max-width: 639px) {

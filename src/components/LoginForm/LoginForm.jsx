@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
+  AuthError,
   Border,
   Button,
   ErrorMessageStyled,
@@ -13,6 +14,7 @@ import {
 } from 'components/Form.styled';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
+import { useAutoClearAuthError } from 'hooks/useAutoClearAuthError';
 
 const initialValues = {
   email: '',
@@ -26,6 +28,7 @@ const validationSchema = yup.object().shape({
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const error = useAutoClearAuthError();
 
   const handleSubmit = (userData, { resetForm }) => {
     dispatch(login(userData));
@@ -61,6 +64,12 @@ export const LoginForm = () => {
           <ErrorMessageStyled name="password" component="div" />
         </FormStyled>
       </Formik>
+
+      {error && (
+        <AuthError>
+          Login faled :( Please check your data or try again later
+        </AuthError>
+      )}
     </Wrapper>
   );
 };

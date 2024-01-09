@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import YupPassword from 'yup-password';
 import { Formik } from 'formik';
 import {
+  AuthError,
   Border,
   Button,
   ErrorMessageStyled,
@@ -14,6 +15,7 @@ import {
 } from '../Form.styled';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
+import { useAutoClearAuthError } from 'hooks/useAutoClearAuthError';
 
 YupPassword(yup);
 
@@ -45,6 +47,7 @@ const validationSchema = yup.object().shape({
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const error = useAutoClearAuthError();
 
   const handleSubmit = (userData, { resetForm }) => {
     dispatch(register(userData));
@@ -87,6 +90,11 @@ export const RegisterForm = () => {
           <ErrorMessageStyled name="password" component="div" />
         </FormStyled>
       </Formik>
+      {error && (
+        <AuthError>
+          Registration faled :( Please check your data or try again later
+        </AuthError>
+      )}
     </Wrapper>
   );
 };
